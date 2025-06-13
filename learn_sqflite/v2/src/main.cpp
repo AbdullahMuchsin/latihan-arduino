@@ -15,7 +15,7 @@ const int dryValue = 4095;
 const int wetValue = 2243;
 
 void setup() {
-  Serial.begin(11525);
+  Serial.begin(115200);
   delay(1000);
 
   Serial.print("Menghungkan Wifi ke ");
@@ -51,7 +51,7 @@ void loop() {
     http.begin(serverUrl);
     http.addHeader("Content-Type", "application/json");
     
-    StaticJsonDocument<200> doc;
+    JsonDocument doc;
 
     doc["moisture"] = moisturePercent;
     doc["api_key"] = apiKey;
