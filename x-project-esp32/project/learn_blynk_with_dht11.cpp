@@ -1,8 +1,6 @@
 #define BLYNK_PRINT Serial
-// --- Tambahkan dua baris ini ---
 #define BLYNK_TEMPLATE_ID ""
 #define BLYNK_TEMPLATE_NAME ""
-// ------------------------------
 
 #include <WiFi.h>
 #include <WiFiClient.h>
