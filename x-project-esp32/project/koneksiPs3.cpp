@@ -10,6 +10,9 @@ void setup()
 
     Serial.println("Menunggu PS3 Controller terhubung...");
 }
+int last_lx = 0, last_ly = 0;
+int last_rx = 0, last_ry = 0;
+int last_l2 = 0, last_r2 = 0;
 
 void loop()
 {
@@ -55,22 +58,40 @@ void loop()
         if (Ps3.data.button.ps)
             Serial.println("PS ditekan");
 
-        // Analog stick
-        Serial.print("Left Stick: X=");
-        Serial.print(Ps3.data.analog.stick.lx);
-        Serial.print(" Y=");
-        Serial.println(Ps3.data.analog.stick.ly);
+        // Analog stick (print hanya jika beda > 5)
+        if (abs(Ps3.data.analog.stick.lx - last_lx) > 5 ||
+            abs(Ps3.data.analog.stick.ly - last_ly) > 5)
+        {
+            Serial.print("Left Stick: X=");
+            Serial.print(Ps3.data.analog.stick.lx);
+            Serial.print(" Y=");
+            Serial.println(Ps3.data.analog.stick.ly);
+            last_lx = Ps3.data.analog.stick.lx;
+            last_ly = Ps3.data.analog.stick.ly;
+        }
 
-        Serial.print("Right Stick: X=");
-        Serial.print(Ps3.data.analog.stick.rx);
-        Serial.print(" Y=");
-        Serial.println(Ps3.data.analog.stick.ry);
+        if (abs(Ps3.data.analog.stick.rx - last_rx) > 5 ||
+            abs(Ps3.data.analog.stick.ry - last_ry) > 5)
+        {
+            Serial.print("Right Stick: X=");
+            Serial.print(Ps3.data.analog.stick.rx);
+            Serial.print(" Y=");
+            Serial.println(Ps3.data.analog.stick.ry);
+            last_rx = Ps3.data.analog.stick.rx;
+            last_ry = Ps3.data.analog.stick.ry;
+        }
 
         // Analog trigger
-        Serial.print("L2: ");
-        Serial.print(Ps3.data.analog.button.l2);
-        Serial.print(" R2: ");
-        Serial.println(Ps3.data.analog.button.r2);
+        if (abs(Ps3.data.analog.button.l2 - last_l2) > 5 ||
+            abs(Ps3.data.analog.button.r2 - last_r2) > 5)
+        {
+            Serial.print("L2: ");
+            Serial.print(Ps3.data.analog.button.l2);
+            Serial.print(" R2: ");
+            Serial.println(Ps3.data.analog.button.r2);
+            last_l2 = Ps3.data.analog.button.l2;
+            last_r2 = Ps3.data.analog.button.r2;
+        }
 
         // Contoh getar jika CROSS ditekan
         if (Ps3.data.button.cross)
@@ -82,6 +103,6 @@ void loop()
             Ps3.setRumble(0, 0);
         }
 
-        delay(100);
+        delay(100); // lebih cepat
     }
 }
