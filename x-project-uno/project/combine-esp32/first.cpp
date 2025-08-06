@@ -19,5 +19,5 @@ void loop()
     resultSensorHujan = analogRead(pinA0);
     Serial.println(resultSensorHujan);
     hujan.println(resultSensorHujan);
-    delay(500);
+    delay(1000);
 }
