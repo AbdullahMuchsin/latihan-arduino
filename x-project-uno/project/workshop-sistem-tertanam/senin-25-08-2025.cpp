@@ -70,3 +70,58 @@ void loop()
         delay(timer);
     }
 }
+
+// 4 : Running LED
+int i;
+int timer = 500;
+int pinLed[] = {6, 7, 8, 9};
+int jmlPin = 4;
+
+void setup()
+{
+    for (int i = 0; i < jmlPin; i++)
+    {
+        pinMode(pinLed[i], OUTPUT);
+    }
+}
+
+void loop()
+{
+    for (int i = 0; i < jmlPin; i++)
+    {
+        digitalWrite(pinLed[i], HIGH);
+        delay(timer);
+        digitalWrite(pinLed[i], LOW);
+        delay(timer);
+    }
+}
+
+// 5 : Blink dengan variabel
+int pinLed = 6;
+
+void setup()
+{
+    pinMode(pinLed, OUTPUT);
+}
+
+void loop()
+{
+    digitalWrite(pinLed, HIGH);
+    delay(100);
+    digitalWrite(pinLed, LOW);
+    delay(100);
+}
+
+// 6 : Basic blink
+void setup()
+{
+    pinMode(6, OUTPUT);
+}
+
+void loop()
+{
+    digitalWrite(6, HIGH);
+    delay(100);
+    digitalWrite(6, LOW);
+    delay(100);
+}
