@@ -47,27 +47,28 @@ void loop()
 }
 
 // 3 : Pushbutton sebagai toggle switch
-int i;
-int timer = 500;
-int pinLed[] = {6, 7, 8, 9};
-int jmlPin = 4;
+int button1 = 2;
+int pinled = 6;
+
+int btnState = 0;
 
 void setup()
 {
-    for (int i = 0; i < jmlPin; i++)
-    {
-        pinMode(pinLed[i], OUTPUT);
-    }
+    pinMode(pinLed, OUTPUT);
+    pinMode(button1, INPUT);
 }
 
 void loop()
 {
-    for (int i = 0; i < jmlPin; i++)
+    btnState = digitalRead(button1);
+
+    if (btnState == LOW)
     {
-        digitalWrite(pinLed[i], HIGH);
-        delay(timer);
-        digitalWrite(pinLed[i], LOW);
-        delay(timer);
+        digitalWrite(pinLed, HIGH);
+    }
+    else
+    {
+        digitalWrite(pinLed, LOW);
     }
 }
 
