@@ -1,6 +1,8 @@
+
+//  a. PWM 1
 #include <Arduino.h>
 
-int pinLed = 6;
+int pinLed = 5;
 
 void setup()
 {
@@ -16,3 +18,5 @@ void loop()
     analogWrite(pinLed, 0);
     delay(200);
 }
+
+// b. PWM 2
