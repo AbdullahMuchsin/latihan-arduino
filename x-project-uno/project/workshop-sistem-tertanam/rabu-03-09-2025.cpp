@@ -19,8 +19,12 @@ void loop()
     delay(100);
 }
 
+#include <Arduino.h>
+
 // Serial Monitor 2
 int pinLed = 6;
+
+bool isKlip = false;
 
 void setup()
 {
@@ -46,6 +50,31 @@ void loop()
             digitalWrite(pinLed, LOW);
             Serial.println("LED LOW");
         }
+
+        if (kondisi == 3)
+        {
+            isKlip = true;
+        }
+
+        if (kondisi == 4)
+        {
+            isKlip = false;
+        }
+    }
+
+    if (isKlip)
+    {
+        digitalWrite(7, HIGH);
+        Serial.println("LED MERAH NYALA KELAP KELIP");
+        delay(200);
+        digitalWrite(7, LOW);
+        Serial.println("LED MERAH PADAM KELAP KELIP");
+        delay(200);
+    }
+    else
+    {
+        digitalWrite(7, LOW);
+        Serial.println("LED MERAH PADAM KELAP KELIP");
     }
 }
 
